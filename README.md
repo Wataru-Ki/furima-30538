@@ -1,1 +1,1 @@
-![ER図](https://gyazo.com/8aefa19a2c03674b1039ec889269c935)
+![ER図](https://gyazo.com/8aefa19a2c03674b1039ec889269c935/raw)
