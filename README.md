@@ -1,1 +1,0 @@
-![ER図](https://gyazo.com/0ce7c66b5d6ab3997d620401a2ea80a4/raw)
