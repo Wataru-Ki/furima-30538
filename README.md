@@ -1,24 +1,74 @@
-# README
+# User table
+|colum|type|option|
+|-----|----|------|
+|email|string|null: false|
+|nickname|string|null: false|
+|password|string|null: false|
+|first_name|string|null: false|
+|family_name|string|null: false|
+|first_name_kana|string|null: false|
+|family_name_kana|string|null: false|
+|birth_day|date|null: false|
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## association
+- has_many :items
+- has_many :comments
+- has_many :purchases
 
-Things you may want to cover:
 
-* Ruby version
+# Item table
+|colum|type|option|
+|-----|----|------|
+|name|string|null: false|
+|price|integer|null: false|
+|introduction|text|null: false|
+|shipping_area_id|integer|null: false|
+|shipping_date_id|integer|null: false|
+|shipping_charge_id|integer|null: false|
+|category_id|integer|null: false|
+|item_condition_id|integer|null: false|
+|user|references|foreign_key: true|
 
-* System dependencies
+## association
+- belongs_to :user
+- has_many :comments
+- has_one :purchase
 
-* Configuration
 
-* Database creation
+# Address table
+|colum|type|option|
+|-----|----|------|
+|prefecture_id|integer|null: false|
+|municipalities|string|null: false|
+|address|string|null: false|
+|postal_code|string|null: false|
+|building_number|string| |
+|telephone_number|string|null: false|
+|purchase|references|foreign_key: true|
 
-* Database initialization
+## association
+- belongs_to :purchase
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+# Purchase table
+|colum|type|option|
+|-----|----|------|
+|user|references|foreign_key: true|
+|item|references|foreign_key: true|
 
-* Deployment instructions
+## association
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
-* ...
+
+# Comment table
+|colum|type|option|
+|-----|----|------|
+|comment|text|null: false|
+|user|references|foreign_key: true|
+|item|references|foreign_key: true|
+
+## association
+- belongs_to :user
+- belongs_to :item
