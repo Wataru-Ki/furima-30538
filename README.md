@@ -14,13 +14,12 @@
 - has_many :items
 - has_many :comments
 - has_one :purchase
-- has_one :address
 
 
 # Item table
 |colum|type|option|
 |-----|----|------|
-|item_name|string|null: false|
+|name|string|null: false|
 |price|integer|null: false|
 |introduction|text|null: false|
 |shipping_area_id|integer|null: false|
@@ -40,13 +39,16 @@
 # Address table
 |colum|type|option|
 |-----|----|------|
-|postal_code|integer|null: false|
 |prefecture_id|integer|null: false|
+|municipalities|text|null: false|
 |address|text|null: false|
+|postal_code|integer|null: false|
+|building_number|text|null: false|
+|telephone_number|integer|null: false|
 |user_id|references|foreign_key: true|
 
 ## association
-- belongs_to :user
+- belongs_to :purchase
 
 
 # Purchase table
@@ -58,6 +60,7 @@
 ## association
 - belongs_to :user
 - belongs_to :item
+- has_one :address
 
 
 # Comment table
