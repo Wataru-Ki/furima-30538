@@ -13,7 +13,7 @@
 ## association
 - has_many :items
 - has_many :comments
-- has_one :purchase
+- has_many :purchases
 
 
 # Item table
@@ -23,8 +23,8 @@
 |price|integer|null: false|
 |introduction|text|null: false|
 |shipping_area_id|integer|null: false|
-|sipping_date_id|integer|null: false|
-|sipping_charge_id|integer|null: false|
+|shipping_date_id|integer|null: false|
+|shipping_charge_id|integer|null: false|
 |category_id|integer|null: false|
 |item_condition_id|integer|null: false|
 |user|references|foreign_key: true|
@@ -32,7 +32,7 @@
 ## association
 - belongs_to :user
 - has_many :comments
-- has_many :purchases
+- has_one :purchase
 
 
 # Address table
@@ -42,9 +42,9 @@
 |municipalities|string|null: false|
 |address|string|null: false|
 |postal_code|string|null: false|
-|building_number|string|null: false|
+|building_number|string| |
 |telephone_number|string|null: false|
-|user|references|foreign_key: true|
+|purchase|references|foreign_key: true|
 
 ## association
 - belongs_to :purchase
