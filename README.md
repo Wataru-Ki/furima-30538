@@ -14,15 +14,20 @@
 - has_many :items
 - has_many :comments
 - has_one :purchase
+- has_one :address
+
 
 # Item table
 |colum|type|option|
 |-----|----|------|
 |item_name|string|null: false|
 |price|integer|null: false|
-|category|integer|null: false|
-|item_condition|integer|null: false|
 |introduction|text|null: false|
+|shipping_area_id|integer|null: false|
+|sipping_date_id|integer|null: false|
+|sipping_charge_id|integer|null: false|
+|category_id|integer|null: false|
+|item_condition_id|integer|null: false|
 |prefecture_id|integer|null: false|
 |user|references|foreign_key: true|
 
@@ -31,16 +36,29 @@
 - has_many :comments
 - has_one :purchase
 
+
+# Address table
+|colum|type|option|
+|-----|----|------|
+|postal_code|integer|null: false|
+|prefecture_id|integer|null: false|
+|address|text|null: false|
+|user_id|references|foreign_key: true|
+
+## association
+- belongs_to :user
+
+
 # Purchase table
 |colum|type|option|
 |-----|----|------|
-|address|string|null: false|
 |user|references|foreign_key: true|
 |item|references|foreign_key: true|
 
 ## association
 - belongs_to :user
 - belongs_to :item
+
 
 # Comment table
 |colum|type|option|
