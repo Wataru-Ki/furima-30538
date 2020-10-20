@@ -27,25 +27,24 @@
 |sipping_charge_id|integer|null: false|
 |category_id|integer|null: false|
 |item_condition_id|integer|null: false|
-|prefecture_id|integer|null: false|
 |user|references|foreign_key: true|
 
 ## association
 - belongs_to :user
 - has_many :comments
-- has_one :purchase
+- has_many :purchase
 
 
 # Address table
 |colum|type|option|
 |-----|----|------|
 |prefecture_id|integer|null: false|
-|municipalities|text|null: false|
-|address|text|null: false|
-|postal_code|integer|null: false|
-|building_number|text|null: false|
-|telephone_number|integer|null: false|
-|user_id|references|foreign_key: true|
+|municipalities|string|null: false|
+|address|string|null: false|
+|postal_code|string|null: false|
+|building_number|string|null: false|
+|telephone_number|string|null: false|
+|user|references|foreign_key: true|
 
 ## association
 - belongs_to :purchase
