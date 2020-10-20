@@ -32,7 +32,7 @@
 ## association
 - belongs_to :user
 - has_many :comments
-- has_many :purchase
+- has_many :purchases
 
 
 # Address table
