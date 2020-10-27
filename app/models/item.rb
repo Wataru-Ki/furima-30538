@@ -1,28 +1,21 @@
 class Item < ApplicationRecord
-  validates :name, presence: true
-  validates :introduction, presence: true
-  validates :item_condition_id, presence: true
-  validates :image, presence: true
-
   belongs_to :user
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :shipping_area
-  validates :shipping_area, presence: true
-  validates :shipping_area_id, numericality: { other_than: 1 }
   belongs_to_active_hash :shipping_date
-  validates :shipping_date, presence: true
-  validates :shipping_date_id, numericality: { other_than: 1 }
   belongs_to_active_hash :shipping_charge
-  validates :shipping_charge, presence: true
-  validates :shipping_charge_id, numericality: { other_than: 1 }
   belongs_to_active_hash :category
-  validates :category, presence: true
-  validates :category_id, numericality: { other_than: 1 }
   belongs_to_active_hash :item_condition
-  validates :item_condition, presence: true
-  validates :item_condition_id, numericality: { other_than: 1 }
 
-  validates :price, presence: true, numericality: { only_integer: true, greater_than: 300, less_than: 9999999 }
+  with_options numericality: { other_than: 1 } do
+    validates :shipping_area_id,:shipping_date_id,:shipping_charge_id,:category_id,:item_condition_id
+  end
+
+  with_options presence: true do
+    validates :name,:introduction,:item_condition_id,:image,:price,:shipping_area,:shipping_date,:shipping_charge,:category,:item_condition
+  end
+
+  validates :price, numericality: { only_integer: true, greater_than: 300, less_than: 9999999 }
 end
