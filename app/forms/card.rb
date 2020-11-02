@@ -12,6 +12,6 @@ class Card
   validates :prefecture, numericality: { other_than: 1 }
 
   def save
-    purchase = Purchase.create()
-    Address.create(municipalities: municipalities, address: address, postal_code: postal_code, building_number: building_number, telephone_number: telephone_number)
+    purchase = Purchase.create(user_id: user_id, item_id: item_id)
+    Address.create(municipalities: municipalities, address: address, postal_code: postal_code, building_number: building_number, telephone_number: telephone_number, purchase_id: purchase.id)
   end
