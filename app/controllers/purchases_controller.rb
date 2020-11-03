@@ -1,4 +1,8 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :move_to_index_bought
+  before_action :move_to_index
+
   def index
     # @card = Card.new
   end
@@ -20,6 +24,19 @@ class PurchasesController < ApplicationController
   private
 
   def card_params
-    params.permit(:prefecture, :municipalities, :address, :postal_code, :building_number, :telephone_number)
+    params.permit(:prefecture_id, :municipalities, :address, :postal_code, :building_number, :telephone_number)
+  end
+
+  def move_to_index
+    @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id
+      redirect_to controller: :items, action: :index
+    end
+  end
+
+  def move_to_index_bought
+    if @item.blank?
+      redirect_to controller: :items, action: :index
+    end
   end
 end
