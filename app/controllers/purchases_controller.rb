@@ -1,5 +1,9 @@
 class PurchasesController < ApplicationController
   def index
+    # @card = Card.new
+  end
+
+  def new
     @card = Card.new
   end
 
