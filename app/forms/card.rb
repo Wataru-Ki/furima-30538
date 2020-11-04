@@ -1,12 +1,13 @@
 class Card
   include ActiveModel::Model
-  attr_accessor :prefecture_id, :municipalities, :address, :postal_code, :building_number, :telephone_number
+  attr_accessor :prefecture_id, :municipalities, :address, :postal_code, :building_number, :telephone_number, :token, :user_id, :item_id
 
   with_options presence: true do
     validates :municipalities
     validates :address
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
     validates :telephone_number, format: { with: /\A\d{,11}\z/ }
+    validates :token
   end
   validates :prefecture_id, numericality: { other_than: 1 }
 
