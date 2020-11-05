@@ -18,5 +18,5 @@ class User < ApplicationRecord
   validates :family_name_kana, presence: true, format: { with: VALID_KANA_REGEX }
 
   has_many :items
-  has_one :purchase
+  has_many :purchases
 end

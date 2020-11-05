@@ -14,10 +14,6 @@ RSpec.describe Card, type: :model do
         @card.building_number = ""
         expect(@card).to be_valid
       end
-      it "電話番号が11桁以内ならば登録できる" do
-        @card.telephone_number = "090123456"
-        expect(@card).to be_valid
-      end
     end
 
     context "商品購入がうまくいかないとき" do
@@ -53,6 +49,11 @@ RSpec.describe Card, type: :model do
       end
       it "電話番号にハイフンがあると登録できない" do
         @card.telephone_number = "090-1234-5678"
+        @card.valid?
+        expect(@card.errors.full_messages).to include("Telephone number is invalid")
+      end
+      it "電話番号が11桁以上だと登録できない" do
+        @card.telephone_number = "090123456789"
         @card.valid?
         expect(@card.errors.full_messages).to include("Telephone number is invalid")
       end

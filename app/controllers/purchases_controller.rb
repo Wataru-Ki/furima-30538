@@ -1,13 +1,10 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_item, only: [:move_to_index, :move_to_index_bought, :pay_item]
   before_action :move_to_index_bought
   before_action :move_to_index
 
   def index
-    @card = Card.new
-  end
-
-  def new
     @card = Card.new
   end
 
@@ -28,6 +25,10 @@ class PurchasesController < ApplicationController
     params.require(:card).permit(:prefecture_id, :municipalities, :address, :postal_code, :building_number, :telephone_number).merge(token: params[:token], user_id: current_user.id, item_id: @item.id)
   end
 
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
   def move_to_index
     @item = Item.find(params[:item_id])
     if current_user.id == @item.user_id
@@ -37,8 +38,7 @@ class PurchasesController < ApplicationController
 
   def move_to_index_bought
     @item = Item.find(params[:item_id])
-    @purchase = Purchase.find(params[:item_id])
-    if @item.id == @purchase.item_id
+    if @item.purchase.present?
       redirect_to root_path
     end
   end
