@@ -25,7 +25,7 @@ class PurchasesController < ApplicationController
   private
 
   def card_params
-    params.permit(:prefecture_id, :municipalities, :address, :postal_code, :building_number, :telephone_number).merge(token: params[:token])
+    params.require(:card).permit(:prefecture_id, :municipalities, :address, :postal_code, :building_number, :telephone_number, :item_id).merge(token: params[:token])
   end
 
   def move_to_index
