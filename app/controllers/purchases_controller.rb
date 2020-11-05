@@ -25,7 +25,7 @@ class PurchasesController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:prefecture_id, :municipalities, :address, :postal_code, :building_number, :telephone_number, :item_id).merge(token: params[:token])
+    params.require(:card).permit(:prefecture_id, :municipalities, :address, :postal_code, :building_number, :telephone_number).merge(token: params[:token], user_id: current_user.id, item_id: @item.id)
   end
 
   def move_to_index
@@ -37,7 +37,8 @@ class PurchasesController < ApplicationController
 
   def move_to_index_bought
     @item = Item.find(params[:item_id])
-    if @item.blank?
+    @purchase = Purchase.find(params[:item_id])
+    if @item.id == @purchase.item_id
       redirect_to root_path
     end
   end
