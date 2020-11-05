@@ -17,6 +17,16 @@ RSpec.describe Card, type: :model do
     end
 
     context "商品購入がうまくいかないとき" do
+      it "User_idがないと登録できない" do
+        @card.user_id = ""
+        @card.valid?
+        expect(@card.errors.full_messages).to include("User can't be blank")
+      end
+      it "Item_idがないと登録できない" do
+        @card.item_id = ""
+        @card.valid?
+        expect(@card.errors.full_messages).to include("Item can't be blank")
+      end
       it "都道府県の情報がないと登録できない" do
         @card.prefecture_id = 1
         @card.valid?

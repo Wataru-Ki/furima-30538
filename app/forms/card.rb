@@ -8,6 +8,8 @@ class Card
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
     validates :telephone_number, format: { with: /\A\d{,11}\z/ }
     validates :token
+    validates :user_id
+    validates :item_id
   end
   validates :prefecture_id, numericality: { other_than: 1 }
 

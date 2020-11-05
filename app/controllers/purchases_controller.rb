@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_item, only: [:move_to_index, :move_to_index_bought, :pay_item, :index, :create]
+  before_action :set_item, only: [:index, :create]
   before_action :move_to_index_bought
   before_action :move_to_index
 
@@ -30,21 +30,18 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_index
-    @item = Item.find(params[:item_id])
     if current_user.id == @item.user_id
       redirect_to root_path
     end
   end
 
   def move_to_index_bought
-    @item = Item.find(params[:item_id])
     if @item.purchase.present?
       redirect_to root_path
     end
   end
 
   def pay_item
-    @item = Item.find(params[:item_id])
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
         amount: @item.price,

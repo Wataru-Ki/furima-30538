@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :card do
+    user_id {1}
+    item_id {1}
     prefecture_id {2}
     municipalities {"市町村"}
     address {"住所"}
