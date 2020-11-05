@@ -6,5 +6,6 @@ FactoryBot.define do
     postal_code {"000-0000"}
     building_number {"建物名"}
     telephone_number {"00000000000"}
+    token {"tok_abcdefghijk00000000000000000"}
   end
 end

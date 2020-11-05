@@ -56,6 +56,11 @@ RSpec.describe Card, type: :model do
         @card.valid?
         expect(@card.errors.full_messages).to include("Telephone number is invalid")
       end
+      it "tokenが空では登録できないこと" do
+        @card.token = ""
+        @card.valid?
+        expect(@card.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
