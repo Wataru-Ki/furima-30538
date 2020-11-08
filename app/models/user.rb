@@ -1,6 +1,8 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :items
+  has_many :purchases
+  has_many :comments
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :nickname, presence: true
@@ -17,6 +19,4 @@ class User < ApplicationRecord
   validates :first_name_kana, presence: true, format: { with: VALID_KANA_REGEX }
   validates :family_name_kana, presence: true, format: { with: VALID_KANA_REGEX }
 
-  has_many :items
-  has_many :purchases
 end
