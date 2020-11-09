@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :items do
     resources :purchases
     resources :comments, only: [:index, :create]
+    collection do
+      post 'search'
+    end
   end
-
 end
