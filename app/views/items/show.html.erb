@@ -82,7 +82,7 @@
   <%# コメント機能 %>
   <% if @comments %>
     <% @comments.each do |comment| %>
-    <li class="">
+    <li class="comments-list">
       <%= comment.user.nickname %>
       <%= comment.content %>
     </li>
