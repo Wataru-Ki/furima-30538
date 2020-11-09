@@ -65,7 +65,7 @@
 # Comment table
 |colum|type|option|
 |-----|----|------|
-|comment|text|null: false|
+|content|text|null: false|
 |user|references|foreign_key: true|
 |item|references|foreign_key: true|
 
