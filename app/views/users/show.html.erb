@@ -1,0 +1,13 @@
+<%= render "shared/header" %>
+
+<h2 class='title'><%= "#{@user.nickname}さんの情報"%></h2>
+<tr>
+  <th>名前</th>
+  <td><%= @user.nickname %></td>
+</tr>
+
+<%= "#{@user.nickname}さんの出品情報"%>
+
+<%= render "shared/item_viewer", collection: @items %>
+
+<%= render "shared/footer" %>
