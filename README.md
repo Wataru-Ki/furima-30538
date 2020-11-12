@@ -72,3 +72,9 @@
 ## association
 - belongs_to :user
 - belongs_to :item
+
+# Contact table
+|colum|type|option|
+|-----|----|------|
+|email|string|null: false|
+|message|text|null: false|
